@@ -1,0 +1,16 @@
+<launch>
+
+  <arg name="robot_id" default="1"/>
+
+
+  <!-- My Package launch file -->
+  <node pkg="Furious_Bot_Developers" type="move.py" name="move" output="screen" ns="robot$(arg robot_id)">
+  </node>
+
+  <node
+    name="dynamic_reconfigure_local_costmap"
+    pkg="dynamic_reconfigure"
+    type="dynparam"
+    args="load /robot$(arg robot_id)/move_base/DWAPlannerROS $(find Furious_Bot_Developers)/param/yaw_tolerance.yaml">
+  </node>
+</launch>
